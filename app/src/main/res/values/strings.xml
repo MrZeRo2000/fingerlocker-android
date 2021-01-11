@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Finger Locker</string>
+    <string name="fl_device_admin">FingerLocker device admin</string>
+    <string name="fl_device_admin_description">FingerLocker device administration</string>
+    <string name="add_admin_extra_app_text">Admin permissions are required to make the application work</string>
 </resources>
