@@ -46,14 +46,9 @@ public class MainActivity extends AppCompatActivity {
         } else {
             //mDPM.removeActiveAdmin(mDeviceAdminSample);
             mDPM.lockNow();
+            finish();
         }
         finish();
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        Log.d(TAG, "resultCode=" + resultCode);
     }
 
     public static class DeviceAdminMainReceiver extends DeviceAdminReceiver {
