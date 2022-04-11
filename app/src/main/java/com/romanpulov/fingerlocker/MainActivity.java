@@ -1,6 +1,5 @@
 package com.romanpulov.fingerlocker;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.admin.DeviceAdminReceiver;
@@ -9,7 +8,6 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 
 public class MainActivity extends AppCompatActivity {
     private final static String TAG = "FingerLocker";

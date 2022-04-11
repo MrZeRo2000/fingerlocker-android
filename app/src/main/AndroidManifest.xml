@@ -15,7 +15,7 @@
             android:autoRemoveFromRecents="true"
             android:excludeFromRecents="true"
             android:noHistory="true"
-            >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,7 +25,8 @@
         <receiver android:name=".MainActivity$DeviceAdminMainReceiver"
             android:label="@string/fl_device_admin"
             android:description="@string/fl_device_admin_description"
-            android:permission="android.permission.BIND_DEVICE_ADMIN">
+            android:permission="android.permission.BIND_DEVICE_ADMIN"
+            android:exported="false">
             <meta-data android:name="android.app.device_admin"
                 android:resource="@xml/device_admin_main" />
             <intent-filter>
