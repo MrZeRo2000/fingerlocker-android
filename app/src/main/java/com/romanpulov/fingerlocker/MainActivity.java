@@ -1,13 +1,16 @@
 package com.romanpulov.fingerlocker;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.admin.DeviceAdminReceiver;
 import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
+
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
     private final static String TAG = "FingerLocker";
@@ -39,7 +42,14 @@ public class MainActivity extends AppCompatActivity {
             intent.putExtra(DevicePolicyManager.EXTRA_DEVICE_ADMIN, mDeviceAdminSample);
             intent.putExtra(DevicePolicyManager.EXTRA_ADD_EXPLANATION,
                     getString(R.string.add_admin_extra_app_text));
-            startActivityForResult(intent, REQUEST_CODE_ENABLE_ADMIN);
+            ActivityResultLauncher<Intent> startForResult = registerForActivityResult(
+                    new ActivityResultContracts.StartActivityForResult(),
+                    result -> {
+                        if (result.getResultCode() == REQUEST_CODE_ENABLE_ADMIN) {
+                            Toast.makeText(getApplicationContext(), R.string.grant_success_text, Toast.LENGTH_SHORT).show();
+                        }
+                    });
+            startForResult.launch(intent);
             // return false - don't update checkbox until we're really active
         } else {
             //mDPM.removeActiveAdmin(mDeviceAdminSample);
