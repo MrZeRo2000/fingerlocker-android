@@ -6,12 +6,12 @@ android {
     namespace = "com.romanpulov.fingerlocker"
 
     defaultConfig {
-        compileSdk = 34
+        compileSdk = 35
         applicationId "com.romanpulov.fingerlocker"
         minSdkVersion 26
-        targetSdkVersion 34
+        targetSdkVersion 35
         versionCode 1
-        versionName "0.2.4"
+        versionName "0.2.5"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -26,8 +26,8 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'androidx.appcompat:appcompat:1.7.0'
     testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    androidTestImplementation 'androidx.test.ext:junit:1.2.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'
 }
