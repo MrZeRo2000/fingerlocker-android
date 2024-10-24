@@ -1,6 +1,4 @@
-plugins {
-    id 'com.android.application'
-}
+apply plugin: 'com.android.application'
 
 android {
     namespace = "com.romanpulov.fingerlocker"
@@ -11,7 +9,7 @@ android {
         minSdkVersion 26
         targetSdkVersion 35
         versionCode 1
-        versionName "0.2.5"
+        versionName "0.2.6"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -22,12 +20,35 @@ android {
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+
+        applicationVariants.all{
+                // this method is use to rename your release apk only
+            variant ->
+                variant.outputs.each {
+                        // on below line we are setting a name to our apk
+                    output ->
+                        // on below line we are specifying our app name.
+                        project.ext { appName = 'finger_locker_' }
+                        // on below line we are adding the version to our apk file name.
+                        def version = variant.versionName.replace(".", "_")
+                        // on below line we are creating a new name for our apk.
+                        def newName = output.outputFile.name
+                        // on below line we are replacing our previous name with our app name.
+                        newName = newName.replace("app-", "$project.ext.appName-")
+                        // on below line we are replacing -release with our formatted version
+                        newName = newName.replace("-release", version)
+                        // at last we are setting our apk name to it.
+                        output.outputFileName  = newName
+                }
+        }
     }
 }
 
 dependencies {
     implementation 'androidx.appcompat:appcompat:1.7.0'
+    //to resolve duplicate resources error, may not be needed in future
+    implementation(platform('org.jetbrains.kotlin:kotlin-bom:1.9.25'))
+
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.2.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'
 }
